@@ -1,0 +1,100 @@
+* {
+    font-family: calibri;
+    box-sizing: border-box;
+}
+
+.header {
+  padding: .5em 1em;
+  background-color: lightgray;
+  border-radius: 10px;
+  font-size: large;
+  margin: 2%;
+}
+
+nav a {
+  text-decoration: none;
+  color: black;
+}
+
+nav > a:hover {
+  background-color: darkgray;
+  color: white;
+}
+
+@media (min-width: 600px) {
+  .header, #pic {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+@media (max-width: 599px) {
+  #pic {
+    display: none;
+  }
+  .header {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+section {
+  margin: 5% 20%;
+  padding: .5em;
+  background-color: lightgray;
+  border-radius: 10px;
+  display: block;
+  text-align: center;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.link {
+  text-decoration: none;
+  color: rgb(40, 182, 238);
+}
+
+h1 ~ p{
+  line-height: 1.3em;
+  margin: .5em;
+}
+
+input {
+  border: none;
+  width: 80%;
+  height: 25%;
+  margin-bottom: .8em;
+  padding: .5em;
+}
+
+button {
+  background-color: rgb(17, 51, 130);
+  color: white;
+  border: none;
+  padding: .3em .7em;
+}
+
+form + p {
+  margin-top: .6em;
+}
+
+
+/* 
+  - [DONE] 2 different class selectors (ex: .p1)
+  - ID selector (ex: pId)
+  - [DONE] pseudo-element or pseudo-class (ex: .nav a:hover)
+  - [DONE] descendent selector (ex: div p)
+  - [DONE] child selector (ex: div > p; immediate children only)
+  - [DONE] adjacent sibling selector (ex: div + p; only adjacent elements of the specified class)
+  - [DONE] general sibling selector (ex: div ~ p; all following elements of the specified type)
+
+  - flexbox -> fit both desktop and phone (use toggle device tool to see how they look)
+
+  - [DONE] Home should change background color on hover
+*/
+
