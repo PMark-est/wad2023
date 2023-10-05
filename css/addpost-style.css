@@ -1,83 +1,72 @@
-* {
-    font-family: calibri;
-    box-sizing: border-box;
-}
-
 nav a {
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
 }
 
-nav > a:hover {
-    background-color: darkgray;
-    color: white;
+header a:hover {
+  background-color: darkgray;
+  color: white;
 }
 
 @media (min-width: 600px) {
-    .header, #pic {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
+  .header,
+  #pic {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 @media (max-width: 599px) {
-    #pic {
-        display: none;
-    }
-    .header {
-        display: flex;
-        justify-content: center;
-    }
+  #pic {
+    display: none;
+  }
+  .header {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 section {
-    margin: 5% 20%;
-    padding: .5em;
-    background-color: lightgray;
-    border-radius: 10px;
-    display: block;
-    text-align: center;
-}
-
-#postbody{
-    width: 70%;
-    height: 300px;
+  margin: 5% 20%;
+  padding: 0.5em;
+  background-color: lightgray;
+  border-radius: 10px;
+  display: block;
+  text-align: center;
 }
 
 h1 {
-    font-weight: bold;
-    font-size: 100%;
+  font-weight: bold;
+  font-size: 100%;
 }
 
 .link {
-    text-decoration: none;
-    color: rgb(40, 182, 238);
+  text-decoration: none;
+  color: rgb(40, 182, 238);
 }
 
-h1 ~ p{
-    line-height: 1.3em;
-    margin: 5%;
+h1 ~ p {
+  line-height: 1.3em;
+  margin: 5%;
 }
 
 input {
-    border: none;
-    width: 80%;
-    height: 25%;
-    margin-bottom: .6em;
-    padding: .5em;
+  border: none;
+  width: 80%;
+  height: 25%;
+  margin-bottom: 0.6em;
+  padding: 0.5em;
 }
 
 button {
-    background-color: rgb(17, 51, 130);
-    color: white;
-    border: none;
-    padding: .2em .3em;
-
+  background-color: rgb(17, 51, 130);
+  color: white;
+  border: none;
+  padding: 0.2em 0.3em;
 }
 
 form + p {
-    margin-top: 10%;
+  margin-top: 10%;
 }
-
