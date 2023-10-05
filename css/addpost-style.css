@@ -41,6 +41,11 @@ section {
     text-align: center;
 }
 
+#postbody{
+    width: 70%;
+    height: 300px;
+}
+
 h1 {
     font-weight: bold;
     font-size: 100%;
