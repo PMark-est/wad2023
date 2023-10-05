@@ -1,3 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
 header {
   display: flex;
   justify-content: space-between;
@@ -10,6 +19,6 @@ header {
 }
 .userpfp {
   border-radius: 50%;
-  width: 75px;
-  height: 75px;
+  width: 50px;
+  height: 50px;
 }
