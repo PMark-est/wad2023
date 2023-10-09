@@ -1,30 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Add post</title>
-    <link rel="stylesheet" type="text/css" href="../css/addpost-style.css">
-    <link rel="stylesheet" type="text/css" href="../css/general.css">
-</head>
-<body>
-
-<header class="header">
-    <a href="index.html">Home</a>
-    <img class="userpfp" src="../images/user.jpg" alt="My picture">
-</header>
-
-
-<section>
-    <form class="post" action="index.html" method="get">
-        <label for="postbody">Post body: </label><br>
-        <textarea id="postbody" name="postbody"></textarea><br>
-
-        <label for="myfile">Select a file:</label>
-        <input type="file" id="myfile" name="myfile" width="30px"><br>
-
-        <input type="submit" id="submit" value="Create post">
-    </form>
-</section>
-
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/addpost-style.css" />
+    <link rel="stylesheet" href="../css/general.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="">Home</a>
+      </nav>
+      <img class="userpfp" src="../images/user.jpg" alt="" />
+    </header>
+    <main>
+      <form action="index.html" method="get">
+        <div>
+          <label for="postbody">Post body: </label>
+          <textarea id="postbody" name="postbody"></textarea>
+        </div>
+        <div>
+          <label for="myfile">Select a file:</label>
+          <input type="file" id="myfile" name="myfile" width="30px" />
+        </div>
+        <button type="submit">Create post</button>
+      </form>
+    </main>
+  </body>
 </html>
