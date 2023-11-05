@@ -51,17 +51,28 @@ fetch('res/posts.json')
         // Post Image
         let postImg = document.createElement("img")
         postImg.innerHTML = posts[i].postImg
-        postImg.id = posts[i].postImgId
+        postImg.id = "post1img"
+
+        for (let j = 0; j < posts[i].photo_urls.length; j++){
+            let postImg = document.createElement("img")
+            postImg.innerHTML = posts[i].photo_urls[j]
+            postArticle.append(postImg)
+        }
+
         // Text of the post
-        let postText = document.createElement("p")
-        postText.innerText = posts[i].text
+        for (let j = 0; j < posts[i].content.length; j++){
+            let postText = document.createElement("p")
+            postText.innerText = posts[i].content[j]
+            postArticle.append(postText)
+        }
+
         // Like button
         let postLike = document.createElement("img")
-        postLike.innerText = posts[i].likeImg
+        postLike.innerText = "../images/like.png"
         postLike.className = "like"
 
         // Append the post body elements to the post article element
-        postArticle.append(postImg, postText, postLike)
+        postArticle.append(postLike)
         // Append the post article element to the post list element
         postList.append(postArticle)
         // Append the post article element to the articles list element
