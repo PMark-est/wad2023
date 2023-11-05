@@ -13,24 +13,25 @@ created at task 3, and use such information to dynamically create the webpage sh
 Figure 1. (2 points)
 */
 
-fetch('URI')
+//fetch('URI')
+fetch('res/posts.json')
 .then((response) => response.json())
-.then((data) => {
+.then((posts) => {
 
     // Create a parent div to store all posts
     let allArticles = document.createElement("ul")
 
-    for (let i = 0; i < json.length; i++) {
+    for (let i = 0; i < posts.length; i++) {
         // Create a list element containing all elements of a post
         let postList = document.createElement("li")
 
         // Create an article element for each post with the corresponding id
         let postArticle = document.createElement("article")
         postArticle.id = posts[i].articleId
-        
-        // Create the a header element for each post 
+
+        // Create the a header element for each post
         let postHeader = document.createElement("header")
-        
+
         // Create the component elements of the header
         // User image
         let headerUserImg = document.createElement("img")
@@ -39,7 +40,7 @@ fetch('URI')
         //Date
         let headerDate = document.createElement("p")
         headerDate.innerText = posts[i].headerDate
-        
+
         // Append the header components (image and date) to the post header
         postHeader.append(headerUserImg, headerDate)
         // Append the header to the post article element
@@ -58,7 +59,7 @@ fetch('URI')
         let postLike = document.createElement("img")
         postLike.innerText = posts[i].likeImg
         postLike.className = "like"
-        
+
         // Append the post body elements to the post article element
         postArticle.append(postImg, postText, postLike)
         // Append the post article element to the post list element
