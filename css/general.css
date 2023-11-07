@@ -27,11 +27,6 @@ a {
 header a:hover {
   background-color: lightgray;
 }
-.userpfp {
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-}
 button {
   background-color: rgb(17, 51, 130);
   color: white;
@@ -39,6 +34,11 @@ button {
   font-size: 16px;
   padding: 10px 10px;
   border-radius: 10px;
+}
+.userpfp {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
 }
 
 @media only screen and (min-device-width: 425px) {

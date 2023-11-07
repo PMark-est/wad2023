@@ -1,4 +1,3 @@
-
 [
   {
     "articleId": 1,
@@ -6,9 +5,7 @@
     "headerUserImg": "../images/pfp1.jpg",
     "headerDate": "2023-10-2",
     "content": ["Looking for a test subject."],
-    "photo_urls": [
-      "../images/post1.jpg"
-    ]
+    "photo_urls": ["../images/post1.jpg"]
   },
   {
     "articleId": 2,
@@ -31,7 +28,9 @@
     "author_name": "",
     "headerUserImg": "../images/pfp4.jpg",
     "headerDate": "2022-01-15 13:45:00",
-    "content": ["Looking for a fourth member to our hackathon team! It's a 8 week long process but it requires a lot of commitement. Worth 6 EAP!"],
+    "content": [
+      "Looking for a fourth member to our hackathon team! It's a 8 week long process but it requires a lot of commitement. Worth 6 EAP!"
+    ],
     "photo_urls": []
   },
   {
@@ -60,4 +59,3 @@
     "photo_urls": []
   }
 ]
-
