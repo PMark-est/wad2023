@@ -12,4 +12,9 @@ export default {
   name: "AppHeader",
 };
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+header {
+  background: gray;
+  border-radius: 10px;
+}
+</style>
