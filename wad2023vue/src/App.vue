@@ -1,10 +1,21 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/signUp">Sign up</router-link>
-  </nav>
+  <app-header></app-header>
   <router-view />
+  <app-footer></app-footer>
 </template>
+
+<script>
+import AppHeader from "./components/AppHeader.vue";
+import AppFooter from "./components/AppFooter.vue";
+
+export default {
+  name: "App",
+  components: {
+    "app-header": AppHeader,
+    "app-footer": AppFooter,
+  },
+};
+</script>
 
 <style lang="scss">
 #app {
