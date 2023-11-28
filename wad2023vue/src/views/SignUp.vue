@@ -6,14 +6,18 @@
 
 <script>
 import SignUpForm from "@/components/SignUpForm.vue";
-// import Header from "@/components/AppHeader.vue";
-// import Footer from "@/components/AppFooter.vue";
 export default {
   name: "SignUp",
   components: {
     SignUpForm,
-    // Header,
-    // Footer,
   },
 };
 </script>
+<style lang="scss">
+.signUpForm {
+  display: block;
+  margin: 10px 30px;
+  padding: 15px 15px;
+  background-color: lightgoldenrodyellow;
+}
+</style>

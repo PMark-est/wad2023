@@ -39,6 +39,7 @@ main {
 aside {
   width: 10vw;
   margin: 2%;
+  border-radius: 8px;
   background: darkgray;
 }
 
