@@ -1,47 +1,45 @@
 <template>
-  <div class="signUpForm">
-    <form ref="form" @submit.prevent="signIn">
-      <ul class="input-group">
-        <label for="email">Email</label>
-        <input type="email" name="email" placeholder="Email" required /><br />
-      </ul>
-      <ul class="input-group">
-        <label for="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          v-model="password"
-          required
-          @input="checkPasswordValidity"
-        />
-      </ul>
-      <br />
-      <button type="submit">Sign up</button>
-      <p v-show="!validPassword && this.password.length > 0">
-        Invalid password. Your password still needs to meet the following
-        requirement(s):
-      </p>
-      <p v-show="!this.correctLength && this.password.length > 0">
-        - be 8-14 characters long
-      </p>
-      <p v-show="!this.hasUpperCase && this.password.length > 0">
-        - contain at least 1 uppercase letter
-      </p>
-      <p v-show="!this.hasLowerCase && this.password.length > 0">
-        - contain at least 2 lowercase letters
-      </p>
-      <p v-show="!this.hasDigit && this.password.length > 0">
-        - contain at least 1 digit
-      </p>
-      <p v-show="!this.startUpperCase && this.password.length > 0">
-        - start with an uppercase letter
-      </p>
-      <p v-show="!this.hasUnderscore && this.password.length > 0">
-        - contain at least 1 underscore
-      </p>
-    </form>
-  </div>
+  <form ref="form" @submit.prevent="signIn">
+    <ul class="input-group">
+      <label for="email">Email</label>
+      <input type="email" name="email" placeholder="Email" required /><br />
+    </ul>
+    <ul class="input-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        v-model="password"
+        required
+        @input="checkPasswordValidity"
+      />
+    </ul>
+    <br />
+    <button type="submit">Sign up</button>
+    <p v-show="!validPassword && this.password.length > 0">
+      Invalid password. Your password still needs to meet the following
+      requirement(s):
+    </p>
+    <p v-show="!this.correctLength && this.password.length > 0">
+      - be 8-14 characters long
+    </p>
+    <p v-show="!this.hasUpperCase && this.password.length > 0">
+      - contain at least 1 uppercase letter
+    </p>
+    <p v-show="!this.hasLowerCase && this.password.length > 0">
+      - contain at least 2 lowercase letters
+    </p>
+    <p v-show="!this.hasDigit && this.password.length > 0">
+      - contain at least 1 digit
+    </p>
+    <p v-show="!this.startUpperCase && this.password.length > 0">
+      - start with an uppercase letter
+    </p>
+    <p v-show="!this.hasUnderscore && this.password.length > 0">
+      - contain at least 1 underscore
+    </p>
+  </form>
 </template>
 
 <script>
@@ -204,6 +202,37 @@ form p {
       </p>
     </form>
   </div>
+=======
+  <form ref="form" @submit.prevent="validateAndSubmit">
+    <ul class="input-group">
+      <label for="email">Email</label>
+      <input type="email" name="email" placeholder="Email" required /><br />
+    </ul>
+    <ul class="input-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        v-model="password"
+        required
+        @input="clearInvalidPasswordMessage"
+      />
+    </ul>
+    <br />
+    <button type="submit">Sign up</button>
+    <p id="invalidPasswordMessage" v-if="showInvalidPasswordMessage">
+      <strong>Invalid password!</strong><br />
+      The password should:<br />
+      - Be <strong> 8-14 </strong> characters long,<br />
+      - Contain at least <strong>1 uppercase letter</strong>,<br />
+      - Contain at least <strong>2 lowercase letters</strong>,<br />
+      - Contain at least <strong>1 digit</strong>,<br />
+      - Start with <strong>1 uppercase letter</strong>,<br />
+      - Contain at least <strong>1 underscore</strong> ('_').
+    </p>
+  </form>
+>>>>>>> Stashed changes
 </template>
 
 <script>
@@ -241,8 +270,6 @@ export default {
 
 <style scoped, lang="scss">
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
   border-radius: 20px;
 }

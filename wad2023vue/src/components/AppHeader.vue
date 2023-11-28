@@ -15,6 +15,6 @@ export default {
 <style lang="scss">
 header {
   background: gray;
-  border-radius: 10px;
+  border-radius: 0 0 16px 16px;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
-  <app-header></app-header>
+  <app-header />
   <router-view />
-  <app-footer></app-footer>
+  <app-footer />
 </template>
 
 <script>
@@ -18,12 +18,25 @@ export default {
 </script>
 
 <style lang="scss">
+body {
+  padding: 0 !important;
+  margin: 0 !important;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  main {
+    flex: 1;
+  }
+}
+button {
+  cursor: pointer;
 }
 
 nav {

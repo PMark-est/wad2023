@@ -1,7 +1,90 @@
 <template>
-  <div></div>
+  <header class="header">
+    <img v-bind:src="post.headerUserImg" class="pfp" />
+    <p class="date">{{ post.headerDate }}</p>
+  </header>
+  <article>
+    <img
+      v-for="image in post.photoUrls"
+      :key="image.id"
+      v-bind:src="image"
+      alt=""
+    />
+    {{ post.content }}
+  </article>
+  <footer class="footer">
+    <span>
+      <button v-on:click="IncrementLikes(post.articleId)">
+        <img src="../assets/like.png" alt="" />
+      </button>
+      <p>{{ post.likes }}</p>
+    </span>
+  </footer>
 </template>
 <script>
-export default {};
+export default {
+  name: "PostContent",
+  props: ["post"],
+  methods: {
+    IncrementLikes: function (id) {
+      this.$store.dispatch("IncrementLikesAct", id);
+    },
+  },
+};
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+$diameter: 40px;
+.header {
+  all: unset;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: gray;
+  border-radius: 8px 8px 0 0;
+  padding: 0 8px;
+}
+article {
+  text-align: justify;
+  margin: 10px 20px;
+  img {
+    display: block;
+    max-width: 100%;
+    margin-bottom: 30px;
+  }
+}
+.footer {
+  all: unset;
+  margin: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  span {
+    display: flex;
+    gap: 25px;
+    button {
+      border: none;
+      background: none;
+    }
+  }
+  > button {
+    border-radius: 10px;
+    border: none;
+    background: gray;
+    margin: 5px 0;
+    &:hover {
+      background: darkgray;
+    }
+  }
+  img {
+    width: $diameter;
+    height: $diameter;
+  }
+}
+
+.pfp {
+  width: $diameter;
+  height: $diameter;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+</style>

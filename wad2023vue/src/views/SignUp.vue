@@ -1,9 +1,7 @@
 <template>
-  <div class="signUp">
-    <!-- <header /> -->
+  <main class="signUpForm">
     <sign-up-form />
-    <!-- <footer /> -->
-  </div>
+  </main>
 </template>
 
 <script>

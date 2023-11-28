@@ -15,6 +15,6 @@ export default {
 <style lang="scss">
 footer {
   background: gray;
-  border-radius: 10px;
+  border-radius: 16px 16px 0 0;
 }
 </style>
