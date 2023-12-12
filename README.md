@@ -1,5 +1,3 @@
-# wad2023
-
 # Cloning
 ## ssh
  ```bash
