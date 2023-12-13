@@ -5,7 +5,6 @@
 </template>
 
 <script>
-fetch("http://localhost:3000/test");
 import AppHeader from "./components/AppHeader.vue";
 import AppFooter from "./components/AppFooter.vue";
 
