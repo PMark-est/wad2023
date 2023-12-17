@@ -63,6 +63,10 @@ export default {
     this.fetchPosts();
     console.log("mounted");
   },
+  updated() {
+    this.fetchPosts();
+    console.log("updated");
+  },
 };
 </script>
 <style lang="scss">

@@ -5,7 +5,7 @@
   </header>
   <article>
     <img
-      v-for="image in post.photoUrls"
+      v-for="image in images"
       :key="image.id"
       v-bind:src="image"
       alt=""
@@ -24,11 +24,26 @@
 <script>
 export default {
   name: "PostContent",
-  props: ["post"],
+  props: ["post", "images"],
   methods: {
+    fetchImages() {
+      fetch(`http://localhost:3000/api/images/${this.post.id}`)
+          .then((response) => response.json())
+          .then((data) => (this.images = data))
+          .catch((err) => console.log(err.message));
+    },
+
     IncrementLikes: function (id) {
       this.$store.dispatch("IncrementLikesAct", id);
     },
+  },
+  mounted() {
+    this.fetchImages();
+    console.log("mounted");
+  },
+  updated() {
+    this.fetchImages();
+    console.log("updated");
   },
 };
 </script>
