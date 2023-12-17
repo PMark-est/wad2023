@@ -14,7 +14,7 @@ app.use(cors({ origin: "http://localhost:8080", credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 
-// is used to check whether a user is authinticated
+// is used to check whether a user is authenticated
 app.get("/auth/authenticate", async (req, res) => {
   console.log("authentication request has been arrived");
   const token = req.cookies.jwt; // assign the token named jwt to the token const
@@ -33,14 +33,14 @@ app.get("/auth/authenticate", async (req, res) => {
           res.send({ authenticated: authenticated }); // authenticated = false
         } else {
           // token exists and it is verified
-          console.log("author is authinticated");
+          console.log("author is authenticated");
           authenticated = true;
           res.send({ authenticated: authenticated }); // authenticated = true
         }
       });
     } else {
       //applies when the token does not exist
-      console.log("author is not authinticated");
+      console.log("author is not authenticated");
       res.send({ authenticated: authenticated }); // authenticated = false
     }
   } catch (err) {
@@ -112,6 +112,19 @@ app.get("/api/getPosts", async (req, res) => {
     console.log("get posts request has arrived");
     const posts = await pool.query("SELECT * FROM posts");
     res.json(posts.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+app.get('/api/posts/:id', async(req, res) => {
+  try {
+    console.log("get a post with route parameter request has arrived");
+    const { id } = req.params;
+    const posts = await pool.query(
+        "SELECT * FROM posttable WHERE id = $1", [id]
+    );
+    res.json(posts.rows[0]);
   } catch (err) {
     console.error(err.message);
   }
