@@ -1,7 +1,12 @@
 # Cloning
 
+http
 ```bash
 git clone https://github.com/PMark-est/wad2023.git
+```
+ssh
+```bash
+git clone git@github.com:PMark-est/wad2023.git
 ```
 
 # Installation

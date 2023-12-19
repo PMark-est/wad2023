@@ -1,7 +1,9 @@
-<template>
-  <div></div>
-</template>
+<template><view-post /></template>
 <script>
-export default {};
+import ViewPost from "@/components/ViewPost.vue";
+export default {
+  name: "APost",
+  components: { ViewPost },
+};
 </script>
 <style lang="scss"></style>

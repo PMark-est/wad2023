@@ -3,15 +3,12 @@
     <main id="mainAddPost">
       <div class="formWrapper">
         <form action="#">
-          <h1>A Post</h1>
+          <h1>Add Post</h1>
           <span id="input">
             <label for="">Body</label>
             <input type="text" name="" id="" placeholder="body" />
           </span>
-          <span id="buttons">
-            <button type="submit">Update</button>
-            <button type="submit">Delete</button>
-          </span>
+          <button type="submit">Add</button>
         </form>
       </div>
     </main>
@@ -37,24 +34,21 @@ export default {
     flex-direction: column;
     width: 50%;
     margin: 15vh auto;
+    button {
+      width: 150px;
+      margin: auto;
+      margin-top: 10px;
+    }
   }
 }
 #input {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 50px;
+  gap: 30px;
   input {
     width: 50%;
     text-align: center;
-  }
-}
-#buttons {
-  display: flex;
-  gap: 30px;
-  margin: 10px auto;
-  button {
-    width: 150px;
   }
 }
 </style>

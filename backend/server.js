@@ -14,6 +14,14 @@ app.use(cors({ origin: "http://localhost:8080", credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 
+const secret = "gdgdhdbcb770785rgdzqws"; // for signing the jwt token
+const maxAge = 60 * 60; // life time of jwt token
+
+const generateJWT = (id) => {
+  return jwt.sign({ id }, secret, { expiresIn: maxAge });
+  // returns the JWT as string
+};
+
 // is used to check whether a user is authenticated
 app.get("/auth/authenticate", async (req, res) => {
   console.log("authentication request has been arrived");
@@ -72,6 +80,32 @@ app.post("/auth/signup", async (req, res) => {
   } catch (err) {
     console.error(err.message);
     res.status(400).send(err.message);
+  }
+});
+
+app.post("/auth/login", async (req, res) => {
+  try {
+    console.log("a login request has arrived");
+    const { email, password } = req.body;
+    const user = await pool.query("SELECT * FROM users WHERE email = $1", [
+      email,
+    ]);
+    if (user.rows.length === 0)
+      return res.status(401).json({ error: "User is not registered" });
+
+    //Checking if the password is correct
+    const validPassword = await bcrypt.compare(password, user.rows[0].password);
+    //console.log("validPassword:" + validPassword);
+    if (!validPassword)
+      return res.status(401).json({ error: "Incorrect password" });
+
+    const token = await generateJWT(user.rows[0].id);
+    res
+      .status(201)
+      .cookie("jwt", token, { maxAge: 6000000, httpOnly: true })
+      .json({ user_id: user.rows[0].id }).send;
+  } catch (error) {
+    res.status(401).json({ error: error.message });
   }
 });
 

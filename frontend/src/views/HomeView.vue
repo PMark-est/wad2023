@@ -1,7 +1,7 @@
 <template>
-  <main>
+  <div class="bodyWrapper">
     <aside></aside>
-    <div class="home">
+    <main class="home">
       <button v-on:click="Logout">Log out</button>
       <ul class="posts">
         <li class="post" v-for="post in posts" :key="post.id">
@@ -10,12 +10,14 @@
           </a>
         </li>
       </ul>
-      <button v-on:click="ResetLikes">Reset likes</button>
-      <button v-on:click="Addpost">Add post</button>
-      <button v-on:click="Deleteall">Delete all</button>
-    </div>
+      <span id="homeButtons">
+        <!--<button v-on:click="ResetLikes">Reset likes</button>-->
+        <button @click="$router.push('/addPost')">Add post</button>
+        <button v-on:click="Deleteall">Delete all</button>
+      </span>
+    </main>
     <aside></aside>
-  </main>
+  </div>
 </template>
 <script>
 import PostContent from "../components/Post.vue";
@@ -77,40 +79,40 @@ export default {
 };
 </script>
 <style lang="scss">
-main {
-  display: flex;
-  overflow: hidden;
-}
-aside {
-  width: 10vw;
-  margin: 2%;
-  border-radius: 8px;
-  background: darkgray;
-}
-
 .posts {
-  width: 60vw;
   overflow-y: scroll;
+  padding: 0;
+  margin: 0 0 8px 0;
+  width: 75%;
+  border-radius: 12px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 .post {
-  width: 98%;
   list-style-type: none;
   background-color: lightgray;
-  margin-bottom: 32px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 }
 .home {
-  flex: 1;
   align-items: center;
   display: flex;
   flex-direction: column;
-  > button {
-    padding: 12px;
-    background: darkgray;
-    border: none;
-    border-radius: 8px;
-    width: 40%;
-    margin: auto;
+  button {
+    width: 100px;
     margin-bottom: 8px;
+  }
+  #homeButtons {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
   }
 }
 </style>
