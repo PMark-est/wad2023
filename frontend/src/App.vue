@@ -51,6 +51,19 @@ body {
 }
 button {
   cursor: pointer;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background-color: #8db1e2;
+  &:hover {
+    background-color: #7891b6;
+  }
+}
+
+input {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
 }
 
 nav {

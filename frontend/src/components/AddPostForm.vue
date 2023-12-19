@@ -37,6 +37,7 @@ export default {
     button {
       width: 150px;
       margin: auto;
+      margin-top: 10px;
     }
   }
 }

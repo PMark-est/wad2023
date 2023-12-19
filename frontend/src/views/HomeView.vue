@@ -10,9 +10,11 @@
           </a>
         </li>
       </ul>
-      <button v-on:click="ResetLikes">Reset likes</button>
-      <button @click="$router.push('/addPost')">Add post</button>
-      <button v-on:click="Deleteall">Delete all</button>
+      <span id="homeButtons">
+        <!--<button v-on:click="ResetLikes">Reset likes</button>-->
+        <button @click="$router.push('/addPost')">Add post</button>
+        <button v-on:click="Deleteall">Delete all</button>
+      </span>
     </main>
     <aside></aside>
   </div>
@@ -96,14 +98,14 @@ export default {
   align-items: center;
   display: flex;
   flex-direction: column;
-  > button {
-    padding: 12px;
-    background: darkgray;
-    border: none;
-    border-radius: 8px;
-    width: 50%;
-    margin: auto;
+  button {
+    width: 100px;
     margin-bottom: 8px;
+  }
+  #homeButtons {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
   }
 }
 </style>
