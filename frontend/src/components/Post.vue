@@ -4,12 +4,7 @@
     <p class="date">{{ post.headerDate }}</p>
   </header>
   <article>
-    <img
-      v-for="image in images"
-      :key="image.id"
-      v-bind:src="image"
-      alt=""
-    />
+    <img v-for="image in images" :key="image.id" v-bind:src="image" alt="" />
     {{ post.content }}
   </article>
   <footer class="footer">
@@ -28,9 +23,9 @@ export default {
   methods: {
     fetchImages() {
       fetch(`http://localhost:3000/api/images/${this.post.id}`)
-          .then((response) => response.json())
-          .then((data) => (this.images = data))
-          .catch((err) => console.log(err.message));
+        .then((response) => response.json())
+        .then((data) => (this.images = data))
+        .catch((err) => console.log(err.message));
     },
 
     IncrementLikes: function (id) {
@@ -55,7 +50,6 @@ $diameter: 40px;
   justify-content: space-between;
   align-items: center;
   background-color: gray;
-  border-radius: 8px 8px 0 0;
   padding: 0 8px;
 }
 article {
