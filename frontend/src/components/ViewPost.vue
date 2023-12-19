@@ -51,7 +51,7 @@ export default {
 }
 #buttons {
   display: flex;
-  gap: 50px;
+  gap: 30px;
   margin: 10px auto;
   button {
     width: 150px;
