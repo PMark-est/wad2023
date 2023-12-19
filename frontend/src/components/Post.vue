@@ -1,30 +1,29 @@
 <template>
   <header class="header">
-    <img v-bind:src="post.headerUserImg" class="pfp" />
-    <p class="date">{{ post.headerDate }}</p>
+    <img v-bind:src="post.userimg" alt="User Image">
+    <p class="date">{{ post.date }}</p>
   </header>
   <article>
-    <img
-      v-for="image in images"
-      :key="image.id"
-      v-bind:src="image"
-      alt=""
-    />
+    <img v-for="image in images" v-bind:src="image.filename" alt="picture" />
     {{ post.content }}
   </article>
   <footer class="footer">
     <span>
-      <button v-on:click="IncrementLikes(post.articleId)">
+      <button v-on:click="IncrementLikes(post.id)">
         <img src="../assets/like.png" alt="" />
       </button>
       <p>{{ post.likes }}</p>
     </span>
+
   </footer>
 </template>
 <script>
 export default {
   name: "PostContent",
-  props: ["post", "images"],
+  props: {
+    post: Object,
+    images: []
+  },
   methods: {
     fetchImages() {
       fetch(`http://localhost:3000/api/images/${this.post.id}`)
@@ -34,8 +33,9 @@ export default {
     },
 
     IncrementLikes: function (id) {
-      this.$store.dispatch("IncrementLikesAct", id);
+
     },
+
   },
   mounted() {
     this.fetchImages();

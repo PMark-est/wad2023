@@ -130,6 +130,18 @@ app.get('/api/posts/:id', async(req, res) => {
   }
 });
 
+app.delete('/api/posts', async(req, res) => {
+  try {
+    console.log("delete a post request has arrived");
+    const deletepost = await pool.query(
+        "DELETE FROM posts"
+    );
+    res.json(deletepost);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
 app.get("/api/images/:id", async (req, res) => {
   try {
     console.log(
@@ -141,8 +153,7 @@ app.get("/api/images/:id", async (req, res) => {
     const posts = await pool.query(
       // pool.query runs a single query on the database.
       //$1 is mapped to the first element of { id } (which is just the value of id).
-      "SELECT * FROM photos WHERE id = $1",
-      [id]
+      "SELECT * FROM photos WHERE id = $1", [id]
     );
     res.json(posts.rows); // we already know that the row array contains a single element, and here we are trying to access it
     // The res.json() function sends a JSON response.

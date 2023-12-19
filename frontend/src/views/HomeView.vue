@@ -24,17 +24,27 @@ export default {
   components: {
     PostContent,
   },
-  computed: {
-    posts() {
-      return this.$store.state.posts;
-    },
+  data() {
+    return {
+      posts: [],
+    };
   },
   methods: {
-    ResetLikes: function () {
-      this.$store.dispatch("ResetLikesAct");
+    ResetLikes: function () {},
+    Addpost: function() {},
+    Deleteall() {
+      fetch(`http://localhost:3000/api/posts}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      })
+          .then((response) => {
+            console.log(response.data);
+            //this.$router.push("/api/allposts");
+          })
+          .catch((e) => {
+            console.log(e);
+          });
     },
-    Addpost() {},
-    Deleteall() {},
     Logout() {
       fetch("http://localhost:3000/auth/logout", {
         credentials: "include", //  Don't forget to specify this if you need cookies
@@ -63,10 +73,7 @@ export default {
     this.fetchPosts();
     console.log("mounted");
   },
-  updated() {
-    this.fetchPosts();
-    console.log("updated");
-  },
+
 };
 </script>
 <style lang="scss">
