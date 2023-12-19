@@ -1,20 +1,27 @@
 <template>
   <header class="header">
-    <img v-bind:src="post.userimg" alt="User Image">
-    <p class="date">{{ post.date }}</p>
+    <!--
+      <img v-bind:src="post.userimg" alt="User Image" />
+    -->
+    <p class="date">{{ getDate() }}</p>
   </header>
-  <article>
-    <img v-for="image in images" :key="image.id" v-bind:src="image" alt="" />
-    {{ post.content }}
-  </article>
+  <a :href="'/#/post/' + post.id">
+    <article>
+      <!--
+        <img v-for="image in images" :key="image.id" v-bind:src="image" alt="" />
+      -->
+      {{ post.content }}
+    </article>
+  </a>
   <footer class="footer">
+    <!--
     <span>
       <button v-on:click="IncrementLikes(post.id)">
-        <img src="../assets/like.png" alt="" />
-      </button>
-      <p>{{ post.likes }}</p>
-    </span>
-
+          <img src="../assets/like.png" alt="" />
+        </button>
+          <p>{{ post.likes }}</p>
+        </span>
+      -->
   </footer>
 </template>
 <script>
@@ -22,28 +29,50 @@ export default {
   name: "PostContent",
   props: {
     post: Object,
-    images: []
+    images: [],
   },
   methods: {
-    fetchImages() {
-      fetch(`http://localhost:3000/api/images/${this.post.id}`)
-        .then((response) => response.json())
-        .then((data) => (this.images = data))
-        .catch((err) => console.log(err.message));
+    getDate() {
+      var months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+      let dateString = "";
+      const date = new Date(this.post.date);
+      dateString +=
+        months[date.getMonth()] +
+        " " +
+        date.getDate() +
+        ", " +
+        date.getFullYear();
+      return dateString;
     },
+    //fetchImages() {
+    //  fetch(`http://localhost:3000/api/images/${this.post.id}`)
+    //    .then((response) => response.json())
+    //    .then((data) => (this.images = data))
+    //    .catch((err) => console.log(err.message));
+    //},
 
-    IncrementLikes: function (id) {
-
-    },
-
+    IncrementLikes: function (id) {},
   },
   mounted() {
-    this.fetchImages();
-    console.log("mounted");
+    //this.fetchImages();
+    //console.log("mounted");
   },
   updated() {
-    this.fetchImages();
-    console.log("updated");
+    //this.fetchImages();
+    //console.log("updated");
   },
 };
 </script>
@@ -52,7 +81,7 @@ $diameter: 40px;
 .header {
   all: unset;
   display: flex;
-  justify-content: space-between;
+  justify-content: right;
   align-items: center;
   background-color: gray;
   padding: 0 8px;

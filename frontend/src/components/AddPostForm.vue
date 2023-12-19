@@ -6,9 +6,9 @@
           <h1>Add Post</h1>
           <span id="input">
             <label for="">Body</label>
-            <input type="text" name="" id="" placeholder="body" />
+            <input type="text" name="" v-model="body" placeholder="body" />
           </span>
-          <button type="submit">Add</button>
+          <button type="submit" @click="AddPost">Add</button>
         </form>
       </div>
     </main>
@@ -17,6 +17,28 @@
 <script>
 export default {
   name: "viewPost",
+  data() {
+    return {
+      body: "",
+    };
+  },
+  methods: {
+    AddPost() {
+      if (this.body.length === 0) return;
+      var data = {
+        authorname: "newUserPost",
+        userimg: "pfpNewUser",
+        content: this.body,
+      };
+      fetch("http://localhost:3000/api/addPost", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+    },
+  },
 };
 </script>
 <style lang="scss">

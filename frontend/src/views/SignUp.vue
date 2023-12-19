@@ -2,51 +2,49 @@
   <div class="form">
     <h3>SignUp</h3>
     <label for="email">Email</label>
-    <input type="email" name="email"  required v-model="email">
+    <input type="email" name="email" required v-model="email" />
     <label for="password">Password</label>
-    <input type="password" name="password" required v-model="password">
+    <input type="password" name="password" required v-model="password" />
     <button @click="SignUp" class="SignUp">SignUp</button>
   </div>
 </template>
 
 <script>
 export default {
-name: "SignUp", 
+  name: "SignUp",
 
-data: function() {
+  data: function () {
     return {
-   email: '',
-   password: '',
-  }
+      email: "",
+      password: "",
+    };
   },
   methods: {
-
-
-SignUp() {
+    SignUp() {
       var data = {
         email: this.email,
-        password: this.password
+        password: this.password,
       };
       fetch("http://localhost:3000/auth/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-          credentials: 'include', // enable cookies
-          body: JSON.stringify(data),
+        credentials: "include", // enable cookies
+        body: JSON.stringify(data),
       })
-      .then((response) => response.json())
-      .then((data) => {
-      console.log(data);
-      this.$router.push("/");
-      })
-      .catch((e) => {
-        console.log(e);
-        console.log("error");
-      });
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          this.$router.push("/");
+        })
+        .catch((e) => {
+          console.log(e);
+          console.log("error");
+        });
     },
-  }, 
-  }
+  },
+};
 </script>
 
 <style lang="scss" scoped>

@@ -1,16 +1,22 @@
 <template>
-  <div class="bodyWrapper">
+  <div class="bodyWrapper" @submit.prevent="signIn">
     <main id="mainAddPost">
       <div class="formWrapper">
-        <form action="#">
+        <form ref="form" action="#">
           <h1>A Post</h1>
           <span id="input">
             <label for="">Body</label>
-            <input type="text" name="" id="" placeholder="body" />
+            <input
+              type="text"
+              v-model="body"
+              name=""
+              id=""
+              placeholder="body"
+            />
           </span>
           <span id="buttons">
-            <button type="submit">Update</button>
-            <button type="submit">Delete</button>
+            <button type="submit" @click="Update">Update</button>
+            <button type="submit" @click="Delete">Delete</button>
           </span>
         </form>
       </div>
@@ -18,8 +24,51 @@
   </div>
 </template>
 <script>
+import { useRoute } from "vue-router";
 export default {
   name: "viewPost",
+  data() {
+    return {
+      routeID: 0,
+      body: "",
+    };
+  },
+  methods: {
+    async Update() {
+      var newPostData = {
+        body: this.body,
+        id: this.routeID,
+      };
+      const post = await fetch(
+        `http://localhost:3000/api/posts/${this.routeID}`
+      )
+        .then((res) => res.json())
+        .then((data) => (newPostData.date = data.date));
+      const newData = await fetch(`http://localhost:3000/api/post/update`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newPostData),
+      }).then((res) => this.$refs.form.submit());
+    },
+    async Delete() {
+      var postData = {
+        id: this.routeID,
+      };
+      const post = await fetch("http://localhost:3000/api/post/delete", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(postData),
+      }).then((res) => this.$refs.form.submit());
+    },
+  },
+  mounted() {
+    const route = useRoute();
+    this.routeID = route.params.id;
+  },
 };
 </script>
 <style lang="scss">

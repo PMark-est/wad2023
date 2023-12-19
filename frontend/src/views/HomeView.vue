@@ -5,15 +5,13 @@
       <button v-on:click="Logout">Log out</button>
       <ul class="posts">
         <li class="post" v-for="post in posts" :key="post.id">
-          <a :href="'/api/posts/' + post.id">
-            <post-content :post="post" />
-          </a>
+          <post-content :post="post" />
         </li>
       </ul>
       <span id="homeButtons">
         <!--<button v-on:click="ResetLikes">Reset likes</button>-->
         <button @click="$router.push('/addPost')">Add post</button>
-        <button v-on:click="Deleteall">Delete all</button>
+        <button @click="Deleteall">Delete all</button>
       </span>
     </main>
     <aside></aside>
@@ -33,19 +31,19 @@ export default {
   },
   methods: {
     ResetLikes: function () {},
-    Addpost: function() {},
     Deleteall() {
-      fetch(`http://localhost:3000/api/posts}`, {
+      fetch("http://localhost:3000/api/deletePosts", {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
       })
-          .then((response) => {
-            console.log(response.data);
-            //this.$router.push("/api/allposts");
-          })
-          .catch((e) => {
-            console.log(e);
-          });
+        .then((response) => {
+          //console.log(response.data);
+          //this.$router.push("/api/allposts");
+          window.location.reload();
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
     Logout() {
       fetch("http://localhost:3000/auth/logout", {
@@ -67,15 +65,16 @@ export default {
     fetchPosts() {
       fetch(`http://localhost:3000/api/getPosts`)
         .then((response) => response.json())
-        .then((data) => (this.posts = data))
+        .then((data) => {
+          this.posts = data;
+        })
         .catch((err) => console.log(err.message));
     },
   },
   mounted() {
     this.fetchPosts();
-    console.log("mounted");
+    //console.log("mounted");
   },
-
 };
 </script>
 <style lang="scss">

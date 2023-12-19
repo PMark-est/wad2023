@@ -143,7 +143,7 @@ app.get("/auth/logout", (req, res) => {
 
 app.get("/api/getPosts", async (req, res) => {
   try {
-    console.log("get posts request has arrived");
+    console.log("get posts request arrived");
     const posts = await pool.query("SELECT * FROM posts");
     res.json(posts.rows);
   } catch (err) {
@@ -151,25 +151,66 @@ app.get("/api/getPosts", async (req, res) => {
   }
 });
 
-app.get('/api/posts/:id', async(req, res) => {
+app.post("/api/addPost", async (req, res) => {
+  try {
+    console.log("add post request arrived");
+    const { authorname, userimg, content } = req.body;
+    const addedPost = await pool.query(
+      "INSERT INTO posts(authorname, userimg, content) VALUES ($1, $2, $3);",
+      [authorname, userimg, content]
+    );
+    console.log("Added new post: " + addedPost);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+app.get("/api/posts/:id", async (req, res) => {
   try {
     console.log("get a post with route parameter request has arrived");
     const { id } = req.params;
-    const posts = await pool.query(
-        "SELECT * FROM posts WHERE id = $1", [id]
-    );
+    const posts = await pool.query("SELECT * FROM posts WHERE id = $1", [id]);
     res.json(posts.rows[0]);
   } catch (err) {
     console.error(err.message);
   }
 });
 
-app.delete('/api/posts', async(req, res) => {
+app.put("/api/post/update", async (req, res) => {
+  try {
+    console.log("update post request arrived");
+    const { body, id } = req.body;
+    console.log("body=", body, "id=", id);
+    const update = await pool.query(
+      "UPDATE posts SET content = $1 WHERE id=$2",
+      [body, id]
+    );
+    res.json(update);
+    console.log("updated post");
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+app.delete("/api/deletePosts", async (req, res) => {
   try {
     console.log("delete a post request has arrived");
-    const deletepost = await pool.query(
-        "DELETE FROM posts"
-    );
+    const deletepost = await pool.query("TRUNCATE posts");
+    console.log("Deleted all posts");
+    res.json(deletepost);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+app.delete("/api/post/delete", async (req, res) => {
+  try {
+    console.log("delete a post request has arrived");
+    const { id } = req.body;
+    const deletepost = await pool.query("DELETE FROM posts WHERE id = $1", [
+      id,
+    ]);
+    console.log("Deleted post with id ", id);
     res.json(deletepost);
   } catch (err) {
     console.error(err.message);
@@ -187,7 +228,8 @@ app.get("/api/images/:id", async (req, res) => {
     const posts = await pool.query(
       // pool.query runs a single query on the database.
       //$1 is mapped to the first element of { id } (which is just the value of id).
-      "SELECT * FROM photos WHERE id = $1", [id]
+      "SELECT * FROM photos WHERE id = $1",
+      [id]
     );
     res.json(posts.rows); // we already know that the row array contains a single element, and here we are trying to access it
     // The res.json() function sends a JSON response.
